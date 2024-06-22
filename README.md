@@ -1,6 +1,6 @@
-# SimpleCaptcha
+# Bot Blockers
 
-SimpleCaptcha is a lightweight CAPTCHA library designed to be easy to integrate into any website. It provides multiple CAPTCHA types including text, emojis, letters, colors, and shapes. This documentation will guide you through the installation, configuration, and usage of SimpleCaptcha.
+Bot Blockers is a lightweight CAPTCHA library designed to be easy to integrate into any website. It provides multiple CAPTCHA types including text, emojis, letters, colors, and shapes. This documentation will guide you through the installation, configuration, and usage of Bot Blockers.
 
 ## Table of Contents
 
@@ -20,15 +20,15 @@ SimpleCaptcha is a lightweight CAPTCHA library designed to be easy to integrate 
 
 ## Installation
 
-To use SimpleCaptcha, include the CSS and JavaScript files from the CDN:
+To use Bot Blockers, include the CSS and JavaScript files from the CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/yourusername/simplecaptcha/captcha.js" defer></script>
+<script src="https://npmjs-cdn-app.vercel.app/cdn/npm/botblockers/botblocker.js" defer></script>
 ````
 
 # Usage
 ## HTML Setup
-Add the following script to your HTML file to initialize SimpleCaptcha:
+Add the following script to your HTML file to initialize Bot Blockers:
 
 ```html
 <!DOCTYPE html>
@@ -36,15 +36,15 @@ Add the following script to your HTML file to initialize SimpleCaptcha:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usage CAPTCHA</title>
-    <script src="https://cdn.jsdelivr.net/gh/yourusername/simplecaptcha/captcha.js" defer></script>
+    <title>Usage Bot Blockers</title>
+    <script src="https://npmjs-cdn-app.vercel.app/cdn/npm/botblockers/botblocker.js" defer></script>
 </head>
 <body>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            initializeCaptcha({
+          initializeBotBlocker({
                 type: 'emoji', // Change this to 'text', 'letters', 'colors', or 'shapes' to switch CAPTCHA type
-                cssPath: 'https://cdn.jsdelivr.net/gh/yourusername/simplecaptcha/captcha.css',
+                cssPath: 'https://npmjs-cdn-app.vercel.app/cdn/npm/botblockers/botblocker.css',
                 canvasId: 'captcha',
                 inputId: 'captcha-input',
                 buttonId: 'captcha-submit',
@@ -59,7 +59,7 @@ Add the following script to your HTML file to initialize SimpleCaptcha:
 ```
 ## JavaScript Initialization
 
-The `initializeCaptcha` function is called when the document is fully loaded. It requires an options object to configure the CAPTCHA.
+The `initializeBotBlocker` function is called when the document is fully loaded. It requires an options object to configure the CAPTCHA.
 ## Configuration Options
 * `type`: Specifies the type of CAPTCHA (text, emoji, letters, colors, shapes).
 * `cssPath`: Path to the CSS file.
@@ -86,37 +86,26 @@ Generates a CAPTCHA with random shapes. Users need to select the correct shapes 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Example Usage</title> 
-    <script src="https://cdn.jsdelivr.net/gh/yourusername/simplecaptcha/captcha.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bot Blockers Example Usage</title>
+  <script src="https://npmjs-cdn-app.vercel.app/cdn/npm/botblockers/botblocker.js" defer></script>
 </head>
 <body>
-    <div id="robot-checkbox-container"></div>
-    <div id="modal-overlay">
-        <div id="captcha-container">
-            <canvas id="captcha" width="200" height="60"></canvas>
-            <form id="captcha-form">
-                <input type="text" id="captcha-input" placeholder="Enter the code">
-                <button type="submit" id="captcha-submit">Submit</button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeCaptcha({
-                type: 'emoji',
-                cssPath: 'https://cdn.jsdelivr.net/gh/yourusername/simplecaptcha/captcha.css',
-                canvasId: 'captcha',
-                inputId: 'captcha-input',
-                buttonId: 'captcha-submit',
-                checkboxContainerId: 'robot-checkbox-container',
-                modalOverlayId: 'modal-overlay',
-                captchaContainerId: 'captcha-container'
-            });
-        });
-    </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    initializeBotBlocker({
+      type: 'colors',
+      cssPath: 'botblocker.css',
+      canvasId: 'captcha',
+      inputId: 'captcha-input',
+      buttonId: 'captcha-submit',
+      checkboxContainerId: 'robot-checkbox-container',
+      modalOverlayId: 'modal-overlay',
+      captchaContainerId: 'captcha-container'
+    });
+  });
+</script>
 </body>
 </html>
 ```

@@ -1,8 +1,23 @@
+/**
+ * Class representing a BotBlocker CAPTCHA.
+ */
 class BotBlocker {
+    /**
+     * Create a BotBlocker instance.
+     * @param {Object} options - Configuration options for the CAPTCHA.
+     * @param {string} options.type - The type of CAPTCHA ('text', 'emoji', 'letters', 'colors', 'shapes').
+     * @param {string} options.cssPath - The path to the CSS file.
+     * @param {string} options.canvasId - The ID of the CAPTCHA canvas element.
+     * @param {string} options.inputId - The ID of the input element for the CAPTCHA.
+     * @param {string} options.buttonId - The ID of the submit button for the CAPTCHA form.
+     * @param {string} options.checkboxContainerId - The ID of the container for the "I'm not a robot" checkbox.
+     * @param {string} options.modalOverlayId - The ID of the modal overlay element.
+     * @param {string} options.captchaContainerId - The ID of the CAPTCHA container element.
+     */
     constructor(options) {
         this.options = options || {};
         this.loadCSS(this.options.cssPath || 'botblocker.css');
-        
+
         this.type = this.options.type || 'text';
         this.canvasId = this.options.canvasId || 'captcha';
         this.inputId = this.options.inputId || 'captcha-input';
@@ -15,6 +30,10 @@ class BotBlocker {
         this.initialize();
     }
 
+    /**
+     * Load the CSS file for the CAPTCHA.
+     * @param {string} filename - The path to the CSS file.
+     */
     loadCSS(filename) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
@@ -23,6 +42,9 @@ class BotBlocker {
         document.getElementsByTagName('head')[0].appendChild(link);
     }
 
+    /**
+     * Create the necessary DOM elements for the CAPTCHA.
+     */
     createDOMElements() {
         const body = document.body;
         const checkboxContainer = document.createElement('div');
@@ -51,7 +73,7 @@ class BotBlocker {
         captchaContainer.style.border = '1px solid #ddd';
         captchaContainer.style.borderRadius = '5px';
         captchaContainer.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.1)';
-        
+
         modalOverlay.appendChild(captchaContainer);
 
         const canvas = document.createElement('canvas');
@@ -63,10 +85,11 @@ class BotBlocker {
         canvas.style.border = '1px solid #ddd';
         canvas.style.borderRadius = '5px';
         captchaContainer.appendChild(canvas);
+
         const form = document.createElement('form');
         form.id = 'captcha-form';
-
         captchaContainer.appendChild(form);
+
         this.input = document.createElement('input');
         this.input.type = 'text';
         this.input.id = this.inputId;
@@ -106,11 +129,17 @@ class BotBlocker {
         this.modalOverlay = modalOverlay;
     }
 
+    /**
+     * Initialize the CAPTCHA by creating the checkbox and setting up event listeners.
+     */
     initialize() {
         this.createCheckbox();
         this.form.addEventListener('submit', (event) => this.validateCaptcha(event));
     }
 
+    /**
+     * Create the "I'm not a robot" checkbox.
+     */
     createCheckbox() {
         const checkboxDiv = document.createElement('div');
         const checkboxInput = document.createElement('input');
@@ -137,6 +166,9 @@ class BotBlocker {
         this.checkbox = checkboxInput;
     }
 
+    /**
+     * Generate the CAPTCHA based on the specified type.
+     */
     generateCaptcha() {
         this.clearInput();
         this.clearOptions();
@@ -159,6 +191,9 @@ class BotBlocker {
         }
     }
 
+    /**
+     * Generate a text CAPTCHA with random alphanumeric characters.
+     */
     generateTextCaptcha() {
         this.captchaCode = '';
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -182,6 +217,9 @@ class BotBlocker {
         this.form.insertBefore(this.input, this.form.firstChild);
     }
 
+    /**
+     * Generate an emoji CAPTCHA with random emojis.
+     */
     generateEmojiCaptcha() {
         this.captchaCode = '';
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -221,6 +259,9 @@ class BotBlocker {
         this.form.insertBefore(this.input, this.form.firstChild);
     }
 
+    /**
+     * Generate a letter CAPTCHA with random letters.
+     */
     generateLetterCaptcha() {
         this.captchaCode = '';
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -244,6 +285,9 @@ class BotBlocker {
         this.form.insertBefore(this.input, this.form.firstChild);
     }
 
+    /**
+     * Generate a color CAPTCHA with random colors.
+     */
     generateColorCaptcha() {
         this.captchaCode = '';
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -286,6 +330,9 @@ class BotBlocker {
         this.form.insertBefore(this.input, this.form.firstChild);
     }
 
+    /**
+     * Generate a shape CAPTCHA with random shapes.
+     */
     generateShapeCaptcha() {
         this.captchaCode = '';
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -327,6 +374,13 @@ class BotBlocker {
         this.form.insertBefore(this.input, this.form.firstChild);
     }
 
+    /**
+     * Draw a shape on the CAPTCHA canvas.
+     * @param {string} shape - The shape to draw ('circle', 'square', 'triangle').
+     * @param {number} x - The x-coordinate of the shape's position.
+     * @param {number} y - The y-coordinate of the shape's position.
+     * @param {CanvasRenderingContext2D} [ctx=this.ctx] - The canvas rendering context.
+     */
     drawShape(shape, x, y, ctx = this.ctx) {
         ctx.beginPath();
         switch (shape) {
@@ -347,6 +401,10 @@ class BotBlocker {
         ctx.fill();
     }
 
+    /**
+     * Validate the CAPTCHA input.
+     * @param {Event} event - The form submit event.
+     */
     validateCaptcha(event) {
         event.preventDefault();
         if (!this.checkbox.checked) {
@@ -379,20 +437,36 @@ class BotBlocker {
         }
     }
 
+    /**
+     * Validate the color CAPTCHA input.
+     * @param {string} inputCode - The input code to validate.
+     * @returns {boolean} True if the input is valid, false otherwise.
+     */
     validateColorCaptcha(inputCode) {
         const inputColors = inputCode.trim().split(' ');
         return inputColors.every(color => this.selectedColors.includes(color.trim()));
     }
 
+    /**
+     * Validate the shape CAPTCHA input.
+     * @param {string} inputCode - The input code to validate.
+     * @returns {boolean} True if the input is valid, false otherwise.
+     */
     validateShapeCaptcha(inputCode) {
         const inputShapes = inputCode.trim().split(' ');
         return inputShapes.every(shape => this.selectedShapes.includes(shape.trim()));
     }
 
+    /**
+     * Clear the input field.
+     */
     clearInput() {
         this.input.value = '';
     }
 
+    /**
+     * Clear the CAPTCHA options.
+     */
     clearOptions() {
         const optionsContainer = document.getElementById('captcha-options');
         if (optionsContainer) {
@@ -400,16 +474,26 @@ class BotBlocker {
         }
     }
 
+    /**
+     * Remove the "I'm not a robot" checkbox.
+     */
     removeCheckbox() {
         this.checkboxContainer.innerHTML = '';
     }
 
+    /**
+     * Close the CAPTCHA modal.
+     */
     closeModal() {
         this.modalOverlay.style.display = 'none';
         this.captchaContainer.style.display = 'none';
     }
 }
 
+/**
+ * Initialize the BotBlocker CAPTCHA.
+ * @param {Object} options - Configuration options for the CAPTCHA.
+ */
 function initializeBotBlocker(options) {
     new BotBlocker(options);
 }
