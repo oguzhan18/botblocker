@@ -1,0 +1,38 @@
+{
+    "name": "botblocker",
+    "version": "1.0.0",
+    "description": "A simple and effective CAPTCHA library to protect your website from bots.",
+    "main": "botblocker.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/yourusername/botblocker.git"
+    },
+    "keywords": [
+      "captcha",
+      "bot",
+      "security",
+      "verification",
+      "protection",
+      "Bot Blocker Captcha",
+      "color captcha",
+      "text captcha",
+      "emoji captcha"
+    ],
+    "author": "Oğuzhan ÇART",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/yourusername/botblocker/issues"
+    },
+    "homepage": "https://github.com/yourusername/botblocker#readme",
+    "dependencies": {},
+    "devDependencies": {},
+    "files": [
+      "botblocker.js",
+      "botblocker.css",
+      "README.md"
+    ]
+  }
+  

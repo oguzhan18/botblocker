@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotBlocker CAPTCHA</title>
+    <script src="botblocker.js" defer></script>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeBotBlocker({
+                type: 'colors',
+                cssPath: 'botblocker.css',
+                canvasId: 'captcha',
+                inputId: 'captcha-input',
+                buttonId: 'captcha-submit',
+                checkboxContainerId: 'robot-checkbox-container',
+                modalOverlayId: 'modal-overlay',
+                captchaContainerId: 'captcha-container'
+            });
+        });
+    </script>
+</body>
+</html>
