@@ -1,5 +1,8 @@
-# Bot Blockers
+<p align="center"> <img src="./assets/logo.png" height="350"></p>
 
+
+ <h1 align="center"> <b > Bot Blockers</b> </h1>
+ 
 Bot Blockers is a lightweight CAPTCHA library designed to be easy to integrate into any website. It provides multiple CAPTCHA types including text, emojis, letters, colors, and shapes. This documentation will guide you through the installation, configuration, and usage of Bot Blockers.
 
 ## Table of Contents
