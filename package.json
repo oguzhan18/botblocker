@@ -1,6 +1,6 @@
 {
     "name": "botblockers",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "A simple and effective CAPTCHA library to protect your website from bots.",
     "main": "botblocker.js",
     "scripts": {
